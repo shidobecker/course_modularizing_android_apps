@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-}
+ }
 
 android {
     compileSdk = Android.compileSdk
@@ -30,7 +30,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
+        //useIR = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeVersion
