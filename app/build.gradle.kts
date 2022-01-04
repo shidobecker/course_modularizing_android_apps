@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -45,11 +46,13 @@ dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.heroDomain))
     implementation(project(Modules.heroInteractors))
+    implementation(project(Modules.ui_heroList))
 
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(AndroidX.lifecycleVmKtx)
+    implementation(Coil.coil)
 
     implementation(Compose.activity)
     implementation(Compose.ui)
@@ -61,5 +64,8 @@ dependencies {
     implementation(Google.material)
 
     implementation(SqlDelight.androidDriver)
+
+    implementation(Hilt.android)
+    kapt(Hilt.compiler)
 }
 
