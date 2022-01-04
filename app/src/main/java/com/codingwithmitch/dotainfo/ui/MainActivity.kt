@@ -20,6 +20,7 @@ import com.codingwithmitch.dotainfo.core.UIComponent
 import com.codingwithmitch.dotainfo.ui.theme.DotaInfoTheme
 import com.codingwithmithc.dotainfo.hero_domain.Hero
 import com.codingwithmithc.dotainfo.hero_interactors.HeroInteractors
+import com.squareup.sqldelight.android.AndroidSqliteDriver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.launchIn
@@ -36,8 +37,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 
-        val getHeros = HeroInteractors.build().getHeros
+        val androidSqlDriver = AndroidSqliteDriver(
+            schema = HeroInteractors.schema,
+            context = this,
+            name = HeroInteractors.dbName
+        )
+
+        val getHeros = HeroInteractors.build(sqlDriver = androidSqlDriver).getHeros
+
         val logger = Logger("GetHeros Test")
+
         getHeros.execute().onEach { dataState ->
             when (dataState) {
                 is DataState.Response -> {
