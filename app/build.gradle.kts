@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -47,6 +48,7 @@ dependencies {
     implementation(project(Modules.heroDomain))
     implementation(project(Modules.heroInteractors))
     implementation(project(Modules.ui_heroList))
+    implementation(project(Modules.ui_heroDetail))
 
 
     implementation(AndroidX.coreKtx)
